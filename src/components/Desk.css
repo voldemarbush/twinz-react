@@ -1,10 +1,7 @@
 .app__desk-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  width: 1440px;
-  gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.5vw;
   transform: scale(1);
   transition: 0.5s ease;
 }
@@ -18,10 +15,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 220px;
-  height: 220px;
+  width: 10vw;
+  height: 10vw;
   transform-style: preserve-3d;
   transition: 0.6s ease all;
+}
+
+.app__desk-card:hover {
+  cursor: pointer;
 }
 
 .app__desk-card.turned {
@@ -91,4 +92,15 @@
   syntax: '<angle>';
   initial-value: 0deg;
   inherits: false;
+}
+
+@media (orientation: portrait) {
+  .app__desk-container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .app__desk-card {
+    width: 20vw;
+    height: 20vw;
+  }
 }
