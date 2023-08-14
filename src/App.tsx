@@ -35,6 +35,7 @@ const App: FC = () => {
   const [indexAcc, setIndexAcc] = useState<number[]>([]);
   const [counter, setCounter] = useState<number>(0);
   const [openCardsCounter, setOpenCardsCounter] = useState<number>(0);
+  const [clickBlock, setClickBlock] = useState<boolean>(false);
   const [isGameOver, setIsGameOver] = useState<boolean>(false);
 
   useEffect(() => {
@@ -72,13 +73,16 @@ const App: FC = () => {
       turnCard('found');
       setOpenCardsCounter(openCardsCounter + 1);
     } else {
+      setClickBlock(true);
       setTimeout(() => {
         turnCard('closed');
-      }, 1000);
+        setClickBlock(false);
+      }, 700);
     }
   }, [counter]);
 
   const handleClick = (index: number): void => {
+    if (clickBlock) return;
     setDeskState((prev) => {
       const newDeskState = fullCopy([...prev]);
       newDeskState[index].state = 'turned';

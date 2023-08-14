@@ -19,7 +19,8 @@ const Desk: FC<DeskProps> = ({ deskState, handleClick, isGameOver }) => {
           }`}
           key={index + item.url}
           onClick={() => {
-            item.state !== 'found' && handleClick(index);
+            if (item.state !== 'found' && item.state !== 'turned')
+              handleClick(index);
           }}
         >
           <div className="app__desk-card_front">
